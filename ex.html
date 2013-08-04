@@ -1,0 +1,29 @@
+<html>
+  <textarea id="in" rows="10" cols="80"></textarea>
+  <br>
+  <button onclick="myclick()" id="but" >submit</button>
+  <br>
+  <input type="file" id="file" name="file" enctype="multipart/form-data"/>
+  <br>
+    <textarea id="out" rows="10" cols="80"></textarea>
+
+</html>
+<script>
+document.getElementById('file').addEventListener('change', readFile, false);
+
+  function readFile (evt) {
+    var files = evt.target.files;
+    var file = files[0];           
+    var reader = new FileReader();
+    reader.onload = function() {
+      var realResult = this.result.match(/<[^>]*>/g);
+      document.getElementById('out').value = realResult;
+    }
+    reader.readAsText(file)
+  }
+
+  function myclick() {
+    var val = document.getElementById('in').value;
+    alert(val);
+  }
+</script>

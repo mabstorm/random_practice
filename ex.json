@@ -1,0 +1,20 @@
+somefile = {<input type="file" id="file" name="file" enctype="multipart/form-data"/>
+
+<script>
+  document.getElementById('file').addEventListener('change', readFile, false);
+
+  function readFile (evt) {
+  var files = evt.target.files;
+  var file = files[0];
+
+  var fh = fopen(file, 0);
+  var str = "";
+  document.getElementById('query_list').textContent = str;
+  if(fh!=-1) {
+    length = flength(fh);        
+    str = fread(fh, length);     
+    fclose(fh);                   
+  } 
+  document.getElementById('query_list').textContent = str;
+}
+</script>};
